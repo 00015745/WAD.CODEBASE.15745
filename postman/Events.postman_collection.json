@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "d87ee846-63ec-4130-bc2c-6cced8081a07",
+		"name": "Events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17721771"
+	},
+	"item": [
+		{
+			"name": "Create Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Delete\",\r\n    \"description\": \"An exciting event for tech enthusiasts to discuss the latest trends in technology.\",\r\n    \"startDate\": \"2024-05-01T09:00:00\",\r\n    \"endDate\": \"2024-05-01T17:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/Events/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Events",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Event",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Updated Tech Conference 2024\",\r\n    \"description\": \"A revised version of the Tech Conference with new speakers and topics.\",\r\n    \"startDate\": \"2024-06-01T09:00:00\",\r\n    \"endDate\": \"2024-06-01T18:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/Events/2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Events",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Event",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Updated Tech Conference 2024\",\r\n    \"description\": \"A revised version of the Tech Conference with new speakers and topics.\",\r\n    \"startDate\": \"2024-06-01T09:00:00\",\r\n    \"endDate\": \"2024-06-01T18:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/Events/3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Events",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Events",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/Events/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Events",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJuZXd1c2VyQGV4YW1wbGUuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Im5ld3VzZXIiLCJleHAiOjE3MzM3NDgzODUsImlzcyI6Iks3dEUxZmlEYnc5TTRnM2MifQ.VxoaXxSXZ3WfXz7LD_EVVFv36oLqlPV1er4bHzvlolM",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "e2afdfe1-3658-4cb8-a939-a72e7a139bfa",
+		"name": "Tickets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17721771"
+	},
+	"item": [
+		{
+			"name": "New Ticket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n    \"eventId\": 1,\r\n    \"price\": 20.00,\r\n    \"quantityAvailable\": 100\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/Tickets",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Tickets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Ticket",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n    \"eventId\": 2,\r\n    \"price\": 15.00,\r\n    \"quantityAvailable\": 200\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/Tickets/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Tickets",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Ticket",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n    \"eventId\": 1,\r\n    \"price\": 20.00,\r\n    \"quantityAvailable\": 100\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/Tickets",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Tickets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tickets",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n    \"eventId\": 1,\r\n    \"price\": 20.00,\r\n    \"quantityAvailable\": 100\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/Tickets",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Tickets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tickets By Event",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n    \"eventId\": 1,\r\n    \"price\": 20.00,\r\n    \"quantityAvailable\": 100\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/Tickets/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Tickets",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJuZXd1c2VyQGV4YW1wbGUuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Im5ld3VzZXIiLCJleHAiOjE3MzM3NDgzODUsImlzcyI6Iks3dEUxZmlEYnc5TTRnM2MifQ.VxoaXxSXZ3WfXz7LD_EVVFv36oLqlPV1er4bHzvlolM",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
