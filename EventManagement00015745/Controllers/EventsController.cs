@@ -6,102 +6,63 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EventManagement00015745.Entities;
+using EventManagement00015745.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EventManagement00015745.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    
     public class EventsController : ControllerBase
     {
-        private readonly EventManagement00015745Context _context;
+        private readonly EventService _eventService;
 
-        public EventsController(EventManagement00015745Context context)
+        public EventsController(EventService eventService)
         {
-            _context = context;
+            _eventService = eventService;
         }
 
-        // GET: api/Events
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Event>>> GetEvent()
+        public async Task<IActionResult> GetAll()
         {
-            return await _context.Event.ToListAsync();
+            var events = await _eventService.GetEvents();
+            return Ok(events);
         }
 
-        // GET: api/Events/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Event>> GetEvent(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var @event = await _context.Event.FindAsync(id);
+            var eventItem = await _eventService.GetEventById(id);
+            if (eventItem == null) return NotFound();
 
-            if (@event == null)
-            {
-                return NotFound();
-            }
-
-            return @event;
+            return Ok(eventItem);
         }
 
-        // PUT: api/Events/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEvent(int id, Event @event)
-        {
-            if (id != @event.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(@event).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EventExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Events
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Event>> PostEvent(Event @event)
+        public async Task<IActionResult> Create([FromBody] Event newEvent)
         {
-            _context.Event.Add(@event);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetEvent", new { id = @event.Id }, @event);
+            var createdEvent = await _eventService.CreateEvent(newEvent);
+            return CreatedAtAction(nameof(Get), new { id = createdEvent.Id }, createdEvent);
         }
 
-        // DELETE: api/Events/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEvent(int id)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Event updatedEvent)
         {
-            var @event = await _context.Event.FindAsync(id);
-            if (@event == null)
-            {
-                return NotFound();
-            }
+            var result = await _eventService.UpdateEvent(id, updatedEvent);
+            if (!result) return NotFound();
 
-            _context.Event.Remove(@event);
-            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _eventService.DeleteEvent(id);
+            if (!result) return NotFound();
 
             return NoContent();
-        }
-
-        private bool EventExists(int id)
-        {
-            return _context.Event.Any(e => e.Id == id);
         }
     }
 }
