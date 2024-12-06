@@ -1,0 +1,22 @@
+# Angular
+/dist/
+/node_modules/
+
+# ASP.NET
+*/bin/
+*/obj/
+
+# Visual Studio Code
+.vscode/
+.vs/
+# Compiled files
+*.dll
+*.exe
+
+# Logs and databases
+*.log
+*.sqlite
+
+# Package files
+*.nupkg
+*.paket
