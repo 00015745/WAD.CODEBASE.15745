@@ -45,6 +45,18 @@ namespace EventManagement00015745.Controllers
 
             return Ok(tickets);
         }
+        // GET: api/tickets/{eventId}
+        [HttpPut("{id   }")]
+        public async Task<IActionResult> UpdateTicket(int id, Ticket ticketDto)
+        {
+            var tickets = await _ticketService.UpdateTicket(id, ticketDto);
+            if (!tickets)
+            {
+                return NotFound($"No tickets found with ID {id}.");
+            }
+
+            return Ok(tickets);
+        }
 
         // POST: api/tickets
         [HttpPost]

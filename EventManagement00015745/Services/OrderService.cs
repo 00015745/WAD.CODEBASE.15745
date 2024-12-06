@@ -1,4 +1,5 @@
-﻿using EventManagement00015745.Entities;
+﻿using EventManagement00015745.DTO;
+using EventManagement00015745.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -13,18 +14,37 @@ namespace EventManagement00015745.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<Order>> GetOrders() => await _context.Order.Include(o => o.User).Include(o => o.Ticket).ToListAsync();
-
-        public async Task<Order?> CreateOrder(Order newOrder)
+        public async Task<IEnumerable<Order>> GetOrders(int userId)
         {
+            return await _context.Order
+                .Where(o => o.UserId == userId)
+               
+                .Include(o => o.Ticket)
+                .ToListAsync();
+        }
+
+        public async Task<Order?> CreateOrder(CreateOrderDto orderDto, int userId)
+        {
+            var newOrder = new Order
+            {
+                UserId = userId,
+                TicketId = orderDto.TicketId,
+                Quantity = orderDto.Quantity,
+                OrderDate = DateTime.Now
+
+            };
             _context.Order.Add(newOrder);
             await _context.SaveChangesAsync();
+
             return newOrder;
         }
 
-        public async Task<bool> DeleteOrder(int id)
+        public async Task<bool> DeleteOrder(int id, int userId)
         {
-            var orderToDelete = await _context.Order.FindAsync(id);
+            var orderToDelete = await _context.Order
+                .Where(o => o.Id == id && o.UserId == userId) // Ensure the order belongs to the authenticated user
+                .FirstOrDefaultAsync();
+
             if (orderToDelete == null) return false;
 
             _context.Order.Remove(orderToDelete);

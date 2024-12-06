@@ -10,6 +10,8 @@ namespace EventManagement00015745.Entities
         [SwaggerSchema("Event ID associated with the ticket")]
         public int EventId { get; set; }
 
+        public Event? Event { get; set; }
+
         [SwaggerSchema("Price of the ticket")]
         public decimal Price { get; set; }
 

@@ -14,7 +14,12 @@ namespace EventManagement00015745.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<Ticket>> GetTickets() => await _context.Ticket.ToListAsync();
+        public async Task<IEnumerable<Ticket>> GetTickets()
+        {
+            return await _context.Ticket
+                         .Include(t => t.Event)  // Eagerly load the Event associated with each Ticket
+                         .ToListAsync();
+        }
 
         public async Task<Ticket?> CreateTicket(Ticket newTicket)
         {
@@ -38,7 +43,7 @@ namespace EventManagement00015745.Services
         public async Task<List<Ticket>> GetTicketsByEventIdAsync(int eventId)
         {
             return await _context.Ticket
-                .Where(t => t.EventId == eventId)
+                .Where(t => t.EventId == eventId).Include(t => t.Event)
                 .ToListAsync();
         }
         public async Task<bool> DeleteTicket(int id)
