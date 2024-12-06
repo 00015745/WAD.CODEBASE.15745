@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<EventManagement00015745Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EventManagement00015745Context") ?? throw new InvalidOperationException("Connection string 'EventManagement00015745Context' not found.")));
 
 // Add services to the container.
 

@@ -1,6 +1,0 @@
-@EventManagement15745_HostAddress = http://localhost:5150
-
-GET {{EventManagement15745_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
