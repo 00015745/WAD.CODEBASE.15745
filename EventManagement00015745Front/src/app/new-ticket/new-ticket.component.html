@@ -1,0 +1,31 @@
+<div
+  style="height: 80vh"
+  class="d-flex justify-content-center h-100vh align-items-center"
+>
+  <div class="col-3">
+    <h1>New Ticket</h1>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Price</label>
+      <input
+        (input)="handleChange($event)"
+        type="number"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        name="price"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="desc" class="form-label">Quantity</label>
+      <input
+        (input)="handleChange($event)"
+        type="text"
+        class="form-control"
+        id="desc"
+        name="quantityAvailable"
+      />
+    </div>
+
+    <button (click)="submit()" class="btn btn-primary">Submit</button>
+  </div>
+</div>

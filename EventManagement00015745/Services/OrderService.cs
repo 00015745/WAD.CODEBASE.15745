@@ -19,7 +19,7 @@ namespace EventManagement00015745.Services
             return await _context.Order
                 .Where(o => o.UserId == userId)
                
-                .Include(o => o.Ticket)
+                .Include(o => o.Ticket).ThenInclude(t=>t.Event)
                 .ToListAsync();
         }
 

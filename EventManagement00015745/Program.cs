@@ -61,9 +61,25 @@ internal class Program
                         };
                     });
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowSpecificOrigins", policy =>
+            {
+                policy.WithOrigins("http://localhost:4200") 
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+            });
 
+           
+            options.AddPolicy("AllowAll", policy =>
+            {
+                policy.AllowAnyOrigin()
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+            });
+        });
         var app = builder.Build();
-
+        app.UseCors("AllowSpecificOrigins");
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {

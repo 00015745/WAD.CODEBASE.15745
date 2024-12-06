@@ -1,0 +1,89 @@
+<div *ngIf="event" class="container p-5 w-100">
+  <h1>Event Details</h1>
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h5 class="card-title">{{ event!.title }}</h5>
+
+      <p class="card-text">
+        {{ event!.description }}
+      </p>
+    </div>
+  </div>
+  <a href="/tickets/{{ event.id }}/new">Create Ticket</a>
+  <table class="mt-5 table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of tickets">
+        <td>{{ t.price }}$</td>
+        <td>{{ t.quantityAvailable }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="selectedTicket = t"
+          >
+            Buy
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Buy tickets</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>How many tickets do you want to buy?</p>
+        <div class="input-group">
+          <input
+            type="number"
+            class="form-control"
+            aria-label="Dollar amount (with dot and two decimal places)"
+            (input)="updateQty($event)"
+            value="{{ qty }}"
+          />
+          <span class="input-group-text">$</span>
+          <span class="input-group-text">{{
+            selectedTicket ? selectedTicket.price * qty : "0.00"
+          }}</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          (click)="clear()"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button (click)="submit()" type="button" class="btn btn-primary">
+          Make an Order
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

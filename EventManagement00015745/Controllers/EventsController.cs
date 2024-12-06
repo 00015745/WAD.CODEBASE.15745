@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EventManagement00015745.Controllers
 {
-    [Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]
     
@@ -41,6 +41,7 @@ namespace EventManagement00015745.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] Event newEvent)
         {
             var createdEvent = await _eventService.CreateEvent(newEvent);
@@ -48,6 +49,7 @@ namespace EventManagement00015745.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> Update(int id, [FromBody] Event updatedEvent)
         {
             var result = await _eventService.UpdateEvent(id, updatedEvent);
@@ -57,6 +59,7 @@ namespace EventManagement00015745.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _eventService.DeleteEvent(id);
